@@ -1,4 +1,4 @@
-# open_ml
+# ML in the browser demo
 
 ## Project setup
 ```

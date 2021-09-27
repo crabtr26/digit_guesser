@@ -1,14 +1,15 @@
 <template>
-  <div id="app" class="bg-gray-700 h-screen">
+  <div id="app" class="bg-black h-screen">
     <Header />
     <Canvas v-if="pyodide" />
-    <h1 v-else>  Loading... </h1>
+    <Loading v-else />
   </div>
 </template>
 
 <script>
 import Canvas from './components/Canvas.vue'
 import Header from './components/Header.vue'
+import Loading from './components/Loading.vue'
 import { ref, onMounted, provide, computed } from 'vue'
 
 export default {
@@ -39,7 +40,8 @@ export default {
   },
   components: {
     Header,
-    Canvas
+    Canvas,
+    Loading
   },
 }
 </script>

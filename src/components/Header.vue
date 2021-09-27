@@ -1,7 +1,7 @@
 <template>
-  <nav class="mx-auto p-4 bg-gray-900">
+  <nav class="mx-auto p-4 bg-black border-white">
     <div class="flex justify-center">
-      <a class="font-extrabold text-5xl text-white"> Digit Guesser </a>
+      <a class="font-extrabold text-5xl text-green-300"> Digit Guesser </a>
     </div>
   </nav>
 </template>

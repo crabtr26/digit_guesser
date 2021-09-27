@@ -1,15 +1,15 @@
 <template>
-  <div class="flex p-2 justify-center bg-gray-700">
-    <div class="flex-col p2 justify-center">
-      <div class="flex py-4 justify-center text-white text-4xl">
+  <div class="flex p-2 justify-center bg-black">
+    <div class="flex-col py-8 justify-center">
+      <div class="flex py-4 justify-center text-gray-200 text-3xl">
         <h1 > Draw a Digit </h1>
       </div>
       <div class="flex justify-center">
-        <Vue3Signature ref="canvas" :sigOption="options" :w="'120px'" :h="'120px'"></Vue3Signature>
+        <Vue3Signature ref="canvas" :sigOption="options" :w="'80px'" :h="'80px'"></Vue3Signature>
       </div>     
-      <div class="flex justify-center">
-        <button class="p-2 text-white text-xl" @click="classify_image">Predict</button>
-        <button class="p-2 text-white text-xl" @click="clear">Clear</button>
+      <div class="flex py-2 justify-center">
+        <button class="p-2 text-gray-200 text-xl" @click="classify_image">Predict</button>
+        <button class="p-2 text-gray-200 text-xl" @click="clear">Clear</button>
       </div>
       <div v-if="prediction" class="flex py-12 text-green-300 text-4xl">
           <h1> Prediction: {{ prediction }} </h1>
@@ -60,7 +60,7 @@ export default {
           gray_image = rgb2gray(image)
 
           # Image is 80px by 80px. Need to downsample to 8px by 8px to match MNIST data
-          image_downscaled = downscale_local_mean(gray_image, (15, 15))
+          image_downscaled = downscale_local_mean(gray_image, (10, 10))
 
           # Reshape image to 1-D array
           x = image_downscaled.reshape(64,)

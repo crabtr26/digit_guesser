@@ -1,26 +1,45 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="bg-gray-700 h-screen">
+    <Header />
+    <Canvas v-if="pyodide" />
+    <h1 v-else>  Loading... </h1>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Canvas from './components/Canvas.vue'
+import Header from './components/Header.vue'
+import { ref, onMounted, provide, computed } from 'vue'
 
 export default {
-  name: 'App',
+  setup () {
+    const pyodide = ref(null)
+    onMounted(
+      async () => {
+        let load_pyodide = await loadPyodide({
+          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
+        })
+        await load_pyodide.loadPackage("scikit-image")
+        await load_pyodide.loadPackage("scikit-learn")
+        await load_pyodide.loadPackage("imageio")
+        await load_pyodide.loadPackage("numpy")
+        load_pyodide.runPython(`
+            import pickle
+            import base64
+            import imageio
+            import numpy as np
+            from skimage.transform import downscale_local_mean
+            from skimage.color import rgb2gray
+        `)
+        pyodide.value = load_pyodide
+      }
+    )
+    provide("pyodide", computed(() => pyodide.value))
+    return {pyodide}
+  },
   components: {
-    HelloWorld
-  }
+    Header,
+    Canvas
+  },
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

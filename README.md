@@ -1,4 +1,4 @@
-# ML in the browser demo
+# ML in the browser, on-chain demo
 
 This is a demo website using the Pyodide package - https://pyodide.org/en/stable/.
 

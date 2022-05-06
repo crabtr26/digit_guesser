@@ -6,7 +6,7 @@ The site uses a slightly modified version of the SVM classifier from the sklearn
 
 The model is deployed in the browser directly, so the data does not leave the client's browser. The site is served from the Internet Computer blockchain.
 
-## Live Demo:
+## Live Demo
 https://nhrm2-5aaaa-aaaad-qau4a-cai.ic.fleek.co/
 
 ## Project setup
